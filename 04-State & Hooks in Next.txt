@@ -5,8 +5,7 @@ React mein state ka use dynamic data store aur update karne ke liye hota hai. Ho
 ✅ useState ek variable ko state mein store karne ke liye use hota hai.
 
 tsx
-Copy
-Edit
+
 import { useState } from "react";
 
 export default function Counter() {
@@ -25,8 +24,7 @@ export default function Counter() {
 ✅ useEffect component mount/update hone par side effects run karne ke liye use hota hai.
 
 tsx
-Copy
-Edit
+
 import { useState, useEffect } from "react";
 
 export default function Timer() {
@@ -51,8 +49,7 @@ Cleanup function → Memory leak se bachne ke liye.
 ✅ useContext multiple components mein data share karne ke liye use hota hai.
 
 tsx
-Copy
-Edit
+
 import { createContext, useContext } from "react";
 
 // 1️⃣ Context create karo
