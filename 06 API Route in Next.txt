@@ -1,0 +1,106 @@
+📌 API Routes in Next.js
+Next.js backend ke liye serverless API routes provide karta hai. Yeh API routes pages ke andar pages/api/ folder mein hote hain aur automatic API endpoints ban jate hain.
+
+🔹 1. Basic API Route
+✅ Ek simple API route jo JSON response return kare.
+
+📁 File Structure:
+
+bash
+Copy
+Edit
+/pages
+ ├── api
+ │    ├── hello.ts   → "/api/hello"
+✅ Example: pages/api/hello.ts
+
+tsx
+Copy
+Edit
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  res.status(200).json({ message: "Hello from Next.js API!" });
+}
+📌 Yeh API /api/hello par available hogi.
+➡ Browser ya Postman mein /api/hello open karne pe { "message": "Hello from Next.js API!" } milega.
+
+🔹 2. Dynamic API Route ([id].ts)
+✅ Agar humein dynamic data serve karna ho, toh [id].ts use kar sakte hain.
+
+📁 File Structure:
+
+bash
+Copy
+Edit
+/pages
+ ├── api
+ │    ├── product
+ │    │    ├── [id].ts  → "/api/product/:id"
+✅ Example: pages/api/product/[id].ts
+
+tsx
+Copy
+Edit
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { id } = req.query; // URL se `id` le raha hai
+  res.status(200).json({ productId: id, name: `Product ${id}` });
+}
+📌 URL /api/product/123 par request bhejne se yeh JSON return hoga:
+
+json
+Copy
+Edit
+{ "productId": "123", "name": "Product 123" }
+🔹 3. Handling POST Requests
+✅ Agar API POST request handle kare, toh req.method check karna zaroori hai.
+
+✅ Example: pages/api/user.ts (POST & GET Handling)
+
+tsx
+Copy
+Edit
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === "POST") {
+    const { name } = req.body;
+    return res.status(201).json({ message: `User ${name} created!` });
+  }
+
+  res.status(405).json({ error: "Method Not Allowed" });
+}
+📌 POST request ke saath body mein { "name": "Hamza" } bhejne se:
+
+json
+Copy
+Edit
+{ "message": "User Hamza created!" }
+🔹 4. Calling API in a Frontend Component
+✅ Agar frontend component API call kare, toh fetch ya axios use hota hai.
+
+tsx
+Copy
+Edit
+import { useEffect, useState } from "react";
+
+export default function FetchData() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/hello") // API call
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
+  return <p>{data ? data.message : "Loading..."}</p>;
+}
+📌 Jab page load hoga, toh API call hoke "Hello from Next.js API!" show hoga.
+
+✅ Summary
+✔ API routes pages/api/ folder mein hote hain.
+✔ Static & Dynamic API routes ([id].ts) bana sakte hain.
+✔ POST, GET aur other HTTP methods handle kar sakte hain.
+✔ Frontend se API call fetch ya axios se hoti hai.
