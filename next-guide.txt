@@ -1,0 +1,21 @@
+Updated Next.js Exam Preparation Plan
+🌟 React Topics Required for Next.js
+JSX & Components (Function-based components, props, children)
+State & Hooks (useState, useEffect, useContext)
+Event Handling & Forms
+React Router vs Next.js Routing
+Context API for State Management
+useRef & useReducer (Advanced Hooks)
+Fetching Data in React (fetch, Axios, useEffect)
+🌟 Next.js Topics
+Introduction to Next.js
+Project Setup & Folder Structure
+Routing in Next.js (Static, Dynamic, Nested, API Routes)
+Data Fetching Methods (SSR, SSG, ISR, CSR)
+API Routes in Next.js
+Styling in Next.js (CSS Modules, Tailwind, Styled Components)
+Image Optimization & Static Assets Handling
+Authentication & Authorization (JWT, NextAuth.js)
+State Management in Next.js
+SEO & Performance Optimization
+Deployment (Vercel, Other Hosting Platforms)
