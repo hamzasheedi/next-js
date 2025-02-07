@@ -1,0 +1,60 @@
+🔹 3. Props in React
+Props (properties) ek tarika hai jisse ek component dusre component se data receive karta hai.
+
+✅ Props Example:
+
+jsx
+Copy
+Edit
+function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+export default function Home() {
+  return <Welcome name="Hamza" />;
+}
+// Output: Hello, Hamza!
+✅ Props as Objects:
+
+jsx
+Copy
+Edit
+function UserProfile({ name, age }) {
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+
+export default function Home() {
+  return <UserProfile name="Hamza" age={25} />;
+}
+📌 Props are Read-Only: Aap directly props ko modify nahi kar sakte.
+
+🔹 4. Children Props in React
+Agar aap kisi component ke andar dynamic content pass karna chahte hain, toh children props use hote hain.
+
+✅ Example (Using children in a component):
+
+jsx
+Copy
+Edit
+function Card({ children }) {
+  return <div className="card">{children}</div>;
+}
+
+export default function Home() {
+  return (
+    <Card>
+      <h2>This is inside the Card!</h2>
+    </Card>
+  );
+}
+// Output: <div class="card"><h2>This is inside the Card!</h2></div>
+💡 Summary
+JSX React ka syntax hai jo HTML ko JS ke saath mix karta hai.
+Functional Components ek simple function ki tarah hote hain jo JSX return karte hain.
+Props ka use ek component se dusre component tak data bhejne ke liye hota hai.
+Children Props ka use dynamic content ya nested components ke liye hota hai.
