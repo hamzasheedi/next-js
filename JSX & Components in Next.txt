@@ -1,0 +1,57 @@
+📌 Step 1: JSX & Components in React (Essential for Next.js)
+Next.js React ka framework hai, toh pehle React ke JSX & Components ko samajhna zaroori hai. Yeh concepts Next.js mein directly use hote hain.
+
+🔹 1. What is JSX?
+JSX (JavaScript XML) ek syntax hai jo React ke andar HTML ko JavaScript ke saath mix karne ke liye use hota hai. Yeh browser ke andar JavaScript me convert hota hai.
+
+🔹 Example (JSX without React component):
+
+jsx
+Copy
+Edit
+const element = <h1>Hello, JSX!</h1>;
+ReactDOM.render(element, document.getElementById("root"));
+🔹 Behind the scenes (JSX → JavaScript):
+
+js
+Copy
+Edit
+const element = React.createElement("h1", null, "Hello, JSX!");
+✅ JSX Rules:
+
+Ek parent element hona zaroori hai.
+JavaScript expressions {} ke andar likhte hain.
+class ki jagah className use hota hai.
+Self-closing tags (<img />, <input />) likhna zaroori hai.
+🔹 Example with JavaScript inside JSX:
+
+jsx
+Copy
+Edit
+const name = "Hamza";
+const element = <h1>Hello, {name}!</h1>;  // Output: Hello, Hamza!
+🔹 2. Functional Components in React
+React functional components ek simple function ki tarah hote hain jo JSX return karte hain.
+
+✅ Basic Functional Component Example:
+
+jsx
+Copy
+Edit
+function Welcome() {
+  return <h1>Welcome to Next.js!</h1>;
+}
+✅ Using Functional Components in Next.js:
+
+jsx
+Copy
+Edit
+export default function Home() {
+  return (
+    <div>
+      <h1>Welcome to Next.js!</h1>
+    </div>
+  );
+}
+📌 Note: Next.js mein har component default export hona chahiye agar hum use pages ya kisi aur file mein use karna chahte hain.
+
