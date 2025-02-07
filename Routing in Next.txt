@@ -1,0 +1,91 @@
+📌 Routing in Next.js
+Next.js file-based routing use karta hai, jisme har .tsx file ek route hoti hai.
+
+🔹 1. Basic Routing
+✅ Pages folder mein har file automatically ek route ban jati hai.
+
+bash
+/pages
+ ├── index.tsx        →  "/" (Home Page)
+ ├── about.tsx        →  "/about"
+ ├── contact.tsx      →  "/contact"
+✅ Example: pages/about.tsx
+
+tsx
+Copy
+Edit
+export default function About() {
+  return <h1>About Page</h1>;
+}
+📌 URL: /about pe jaane se yeh render hoga.
+
+🔹 2. Dynamic Routing ([id].tsx)
+✅ Agar humein dynamic pages chahiye (e.g., /product/1, /product/2), toh bracket [id].tsx use hota hai.
+
+📁 File Structure:
+
+bash
+/pages
+ ├── product
+ │    ├── [id].tsx   → "/product/:id"
+✅ Example: pages/product/[id].tsx
+
+tsx
+Copy
+Edit
+import { useRouter } from "next/router";
+
+export default function ProductDetail() {
+  const router = useRouter();
+  const { id } = router.query; // URL se `id` le raha hai
+
+  return <h1>Product ID: {id}</h1>;
+}
+📌 URL /product/123 pe yeh Product ID: 123 show karega.
+
+🔹 3. Programmatic Navigation (useRouter)
+✅ Button click se page change karne ke liye useRouter ka use hota hai.
+
+tsx
+Copy
+Edit
+import { useRouter } from "next/router";
+
+export default function Home() {
+  const router = useRouter();
+
+  return (
+    <button onClick={() => router.push("/about")}>Go to About</button>
+  );
+}
+📌 Button click karne se /about page open ho jayega.
+
+🔹 4. Nested Routing (/pages/blog/[slug].tsx)
+✅ Agar ek blog ka system banana ho jisme slug ho (/blog/my-post), toh [slug].tsx use hota hai.
+
+📁 File Structure:
+
+bash
+
+/pages
+ ├── blog
+ │    ├── [slug].tsx   → "/blog/:slug"
+✅ Example: pages/blog/[slug].tsx
+
+tsx
+
+import { useRouter } from "next/router";
+
+export default function BlogPost() {
+  const router = useRouter();
+  const { slug } = router.query;
+
+  return <h1>Blog Post: {slug}</h1>;
+}
+📌 URL /blog/my-first-post pe Blog Post: my-first-post show hoga.
+
+✅ Summary
+✔ File-Based Routing → Har .tsx file ek route hoti hai.
+✔ Dynamic Routing ([id].tsx) → useRouter se URL se data le sakte hain.
+✔ Programmatic Navigation (router.push()) → Button click par navigate kar sakte hain.
+✔ Nested Routing (/blog/[slug].tsx) → Dynamic routes ke andar bhi pages bana sakte hain.
