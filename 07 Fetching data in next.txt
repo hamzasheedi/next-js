@@ -1,0 +1,56 @@
+# Fetching Data in React
+
+Fetching data is essential for dynamic React applications. In React, we commonly use the following methods:
+
+## 1️⃣ Using `fetch()` with `useEffect`
+- `fetch()` is a built-in JavaScript function for making HTTP requests.
+- Use `useEffect` to trigger data fetching when the component mounts.
+
+```tsx
+import { useEffect, useState } from 'react';
+
+function DataFetchingComponent() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+```
+
+## 2️⃣ Using Axios
+- Axios is a popular library for HTTP requests with better error handling and simpler syntax.
+- Install using `npm install axios` or `yarn add axios`.
+
+```tsx
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function AxiosExample() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => setData(response.data));
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+```
+
+## 3️⃣ When to Use Each
+- **fetch()**: Good for simple requests without additional libraries.
+- **Axios**: Ideal for complex requests (e.g., interceptors, error handling).
+
+## 4️⃣ Summary
+- `useEffect` is crucial for triggering data fetches after component mount.
+- `fetch()` and Axios are the two main ways to fetch data in React.
+
+## ✅ Best Practices
+- Always handle errors and loading states.
+- Avoid memory leaks by cleaning up effects.
+
