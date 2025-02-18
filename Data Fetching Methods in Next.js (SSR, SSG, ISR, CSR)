@@ -1,0 +1,98 @@
+### Data Fetching Methods in Next.js (SSR, SSG, ISR, CSR)  
+
+---
+
+### 1️⃣ SSR (Server-Side Rendering)  
+- **Fetches data on each request.**  
+- **SEO-friendly** because the page is fully rendered on the server.  
+- Use `getServerSideProps()` in the **Pages Router** or directly in the **App Router** component.  
+
+Example:  
+```tsx
+// In Pages Router (`pages/index.tsx`)
+export async function getServerSideProps() {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+  return { props: { data } };
+}
+
+
+---
+
+
+🔹 Data is fetched on each request.
+
+2️⃣ SSG (Static Site Generation)
+Builds static HTML at build time.
+Faster page load but data is static until the next build.
+Use getStaticProps() in the Pages Router or export const revalidate = false; in App Router.
+Example:
+
+tsx
+
+// In Pages Router (`pages/index.tsx`)
+export async function getStaticProps() {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+  return { props: { data } };
+}
+
+
+---
+
+
+🔹 Data is fetched at build time.
+
+3️⃣ ISR (Incremental Static Regeneration)
+Combines SSG with revalidation.
+Updates static pages at a specific interval without rebuilding the whole site.
+Use revalidate option in getStaticProps() or export const revalidate = X; in App Router.
+Example:
+
+tsx
+
+// In App Router (`app/page.tsx`)
+export const revalidate = 60;  // Revalidate every 60 seconds
+
+🔹 Page regenerates in the background.
+
+
+---
+
+
+4️⃣ CSR (Client-Side Rendering)
+Data is fetched on the client side using hooks like useEffect.
+No SEO benefits, but fast navigation as only data is fetched.
+Example:
+
+tsx
+"use client";
+import { useEffect, useState } from 'react';
+
+export default function ClientComponent() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.example.com/data')
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
+  return <div>{data ? data.title : 'Loading...'}</div>;
+}
+🔹 Data is fetched in the browser after page load.
+
+
+---
+
+
+
+✅ Summary
+SSR: Data fetched on every request – SEO-friendly.
+SSG: Data fetched at build time – Fast but static.
+ISR: Combines SSG with periodic updates – Best of both worlds.
+CSR: Data fetched on the client – Fast navigation, no SEO benefits.
+
+
+
+THANKS FOR READING
